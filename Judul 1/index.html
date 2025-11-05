@@ -141,5 +141,43 @@
     <p>© 2025 Delon. Dibuat dengan menggunakan HTML & CSS.</p>
 </footer>
 
+<script>
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    window.addEventListener('scroll', () => {
+      for (let el of revealElements) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) el.classList.add('active');
+      }
+    });
+
+    // Dark Mode dengan ikon yang sesuai
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+ 
+    if (localStorage.getItem('dark-mode') === 'true') {
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = '🌙';
+    } else {
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const darkModeAktif = body.classList.contains('dark-mode');
+      toggleBtn.textContent = darkModeAktif ? '🌙' : '☀️';
+      localStorage.setItem('dark-mode', darkModeAktif);
+    });
+
+    // Hamburger Menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+    });
+  </script>
+  
 </body>
 </html>
